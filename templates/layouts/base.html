@@ -1,0 +1,63 @@
+<!--
+=========================================================
+* Corporate UI - v1.0.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/corporate-ui
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+{% load i18n static admin_corporate %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+{% get_direction as direction %}
+{% get_admin_setting as admin_setting %}
+<html lang="en">
+
+<head>
+  {% include 'includes/head.html' %}
+  {% block extrahead %}{% endblock extrahead %}
+  {% block extrastyle %}{% endblock extrastyle %}
+</head>
+
+<body class="g-sidenav-show  bg-gray-100">
+  {% block sidebar %}
+    {% include 'includes/sidebar.html' %}
+  {% endblock sidebar %}
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <!-- Navbar -->
+    {% block navigation %}
+      {% include 'includes/navigation.html' %}
+    {% endblock navigation %}
+    <!-- End Navbar -->
+    {% block content %}{% endblock content %}
+  </main>
+  {% block fixed_plugin %}
+    {% include 'includes/fixed_plugin.html' %}
+  {% endblock fixed_plugin %}
+
+
+  {% include 'includes/scripts.html' %}
+  {% block extrascripts %}{% endblock extrascripts %}
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Corporate UI Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="{% static 'assets/js/corporate-ui-dashboard.min.js' %}?v=1.0.0"></script>
+</body>
+
+</html>

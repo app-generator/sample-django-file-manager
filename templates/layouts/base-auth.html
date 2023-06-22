@@ -1,0 +1,44 @@
+<!--
+=========================================================
+* Corporate UI - v1.0.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/corporate-ui
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% include 'includes/head.html' %}
+  {% block extrastyle %}{% endblock extrastyle %}
+</head>
+
+<body class="">
+  {% block navigation %}
+    {% include 'includes/navigation-auth.html' %}
+  {% endblock navigation %}
+  <main class="main-content  mt-0">
+    <section>
+      <div class="page-header min-vh-100">
+        <div class="container">
+          <div class="row">
+            {% block content %}{% endblock content %}
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  {% include 'includes/scripts.html' %}
+  {% block extrascripts %}{% endblock extrascripts %}
+
+</body>
+
+</html>
