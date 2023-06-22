@@ -12,6 +12,8 @@ Designed for those who like bold elements and beautiful websites. Made of hundre
 
 The codebase needs to be enhanced to manage all files saved in the media directory. For instance, the following structure might exist:
 
+> **Disk Storage** (Files Exlorer)
+
 ```bash
 <ROOT>
   |-- media
@@ -31,7 +33,7 @@ The route that handles the files needs to be like this:
 - `/file-manager/` - the root of the `MEDIA` directory is managed
 - `/file-manager/project1/` only the files and subdirectories of `project1` are managed 
 
-> UI
+> **UI** (Files Exlorer)
 
 The UI will provide a `left`, `right` view, using a pattern similar to Windows File Explorer: 
 
