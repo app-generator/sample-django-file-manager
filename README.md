@@ -1,10 +1,7 @@
-# [Django Corporate](https://appseed.us/product/corporate-dashboard/django/)
+# [Django File Manager ](https://github.com/app-generator/sample-django-file-manager/)
 
 Open-source **Django** project crafted on top of **[Corporate Dashboard](https://appseed.us/product/corporate-dashboard/django/)**, an open-source `Bootstrap 5` design from [Creative-Tim](https://www.creative-tim.com/product/corporate-ui-dashboard?AFFILIATE=128200).
 Designed for those who like bold elements and beautiful websites. Made of hundred of elements, designed blocks and fully coded pages, `Corporate Dashboard` is ready to help you create stunning websites and webapps.
-
-- 👉 [Django Corporate](https://django-corporate.onrender.com/) - `LIVE Demo`
-- 🛒 [Django Corporate PRO](https://appseed.us/product/corporate-dashboard-pro/django/) - `PRO Version`
 
 <br />
 
@@ -198,4 +195,4 @@ At this point, the product should be LIVE.
 <br />
 
 ---
-[Django Corporate](https://appseed.us/product/corporate-dashboard/django/) - **Django** starter provided by **[AppSeed](https://appseed.us/)**
+[Django File Manager ](https://github.com/app-generator/sample-django-file-manager/) - **Django** starter provided by **[AppSeed](https://appseed.us/)**
