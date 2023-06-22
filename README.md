@@ -9,6 +9,45 @@ Designed for those who like bold elements and beautiful websites. Made of hundre
 
 <br />
 
+> File Manager
+
+The codebase needs to be enhanced to manage all files saved in the media directory. For instance, the following structure might exist:
+
+```bash
+<ROOT>
+  |-- media
+       |-- project1
+       |    |-- photo.jpg
+       |    |-- cv.pdf
+       |    |-- dir1/
+       |         |-- readme.txt
+       |
+       |-- project2
+            |-- my-data.png
+            |-- reports.xls
+```
+
+The route that handles the files needs to be like this:
+
+- `/file-manager/` - the root of the `MEDIA` directory is managed
+- `/file-manager/project1/` only the files and subdirectories of `project1` are managed 
+
+> UI
+
+The UI will provide a `left`, `right` view, using a pattern similar to Windows File Explorer: 
+
+- **left panel** shows directories
+  - the user can collapse the tree structure  
+- **right panel**
+  - shows the current files of the selected directory (on the right panel)
+  - ACTIONS:
+    - delete
+    - view (modal popup) for formats: PNG, JPG, PDF, CSV
+    - download
+    - upload   
+ 
+<br />
+
 > Features: 
 
 - ✅ `Up-to-date Dependencies`
