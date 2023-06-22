@@ -5,11 +5,10 @@ Designed for those who like bold elements and beautiful websites. Made of hundre
 
 - 👉 [Django Corporate](https://django-corporate.onrender.com/) - `LIVE Demo`
 - 🛒 [Django Corporate PRO](https://appseed.us/product/corporate-dashboard-pro/django/) - `PRO Version`
-- 🚀 Free [Support](https://appseed.us/support/) via Email & `Discord`
 
 <br />
 
-> File Manager
+## File Manager
 
 The codebase needs to be enhanced to manage all files saved in the media directory. For instance, the following structure might exist:
 
@@ -46,18 +45,6 @@ The UI will provide a `left`, `right` view, using a pattern similar to Windows F
     - download
     - upload   
  
-<br />
-
-> Features: 
-
-- ✅ `Up-to-date Dependencies`
-- ✅ Theme: [Django Admin Corporate](https://github.com/app-generator/django-admin-corporate), designed by [Creative-Tim](https://www.creative-tim.com/product/corporate-ui-dashboard?AFFILIATE=128200)
-  - `can be used in any Django project` (new or legacy)
-- ✅ **Authentication**: `Django.contrib.AUTH`, Registration
-- 🚀 `Deployment` 
-  - `CI/CD` flow via `Render`
-  - [Django Soft - Go LIVE](https://www.youtube.com/watch?v=1QVdQVSkUCI) - `video presentation`
-
 <br />
 
 ![Django Corporate Dashboard](https://user-images.githubusercontent.com/51070104/229719846-cfe96c5c-89c2-4ea0-89a9-7be69ebbb228.png)
