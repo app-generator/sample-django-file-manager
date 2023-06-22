@@ -57,8 +57,8 @@ The UI will provide a `left`, `right` view, using a pattern similar to Windows F
 > 👉 **Step 1** - Download the code from the GH repository (using `GIT`) 
 
 ```bash
-$ git clone https://github.com/app-generator/django-corporate-dashboard.git
-$ cd django-corporate-dashboard
+$ git clone https://github.com/app-generator/sample-django-file-manager.git
+$ cd sample-django-file-manager
 ```
 
 <br />
@@ -79,8 +79,8 @@ Visit `http://localhost:5085` in your browser. The app should be up & running.
 > 👉 Download the code  
 
 ```bash
-$ git clone https://github.com/app-generator/django-corporate-dashboard.git
-$ cd django-corporate-dashboard
+$ git clone https://github.com/app-generator/sample-django-file-manager.git
+$ cd sample-django-file-manager
 ```
 
 <br />
