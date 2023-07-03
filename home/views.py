@@ -15,18 +15,6 @@ def index(request):
     # Page from the theme 
     return render(request, 'pages/dashboard.html', context=context)
 
-# def get_files_from_directory(directory_path):
-#     files = []
-#     for root, _, filenames in os.walk(directory_path):
-#         for filename in filenames:
-#             file_path = os.path.join(root, filename)
-#             files.append({
-#                 'file': file_path.split('/media/')[1],
-#                 'filename': filename,
-#                 'file_path': file_path
-#             })
-#     return files
-
 def get_files_from_directory(directory_path):
     files = []
     for filename in os.listdir(directory_path):
