@@ -15,11 +15,23 @@ def index(request):
     # Page from the theme 
     return render(request, 'pages/dashboard.html', context=context)
 
+# def get_files_from_directory(directory_path):
+#     files = []
+#     for root, _, filenames in os.walk(directory_path):
+#         for filename in filenames:
+#             file_path = os.path.join(root, filename)
+#             files.append({
+#                 'file': file_path.split('/media/')[1],
+#                 'filename': filename,
+#                 'file_path': file_path
+#             })
+#     return files
+
 def get_files_from_directory(directory_path):
     files = []
-    for root, _, filenames in os.walk(directory_path):
-        for filename in filenames:
-            file_path = os.path.join(root, filename)
+    for filename in os.listdir(directory_path):
+        file_path = os.path.join(directory_path, filename)
+        if os.path.isfile(file_path):
             files.append({
                 'file': file_path.split('/media/')[1],
                 'filename': filename,
@@ -34,17 +46,15 @@ def file_manager(request):
     selected_directory = request.GET.get('directory', '') 
 
     files = []
-    if selected_directory:
-        selected_directory_path = os.path.join(media_path, selected_directory)
-        if os.path.isdir(selected_directory_path):
-            files = get_files_from_directory(selected_directory_path)
+    selected_directory_path = os.path.join(media_path, selected_directory)
+    if os.path.isdir(selected_directory_path):
+        files = get_files_from_directory(selected_directory_path)
 
     context = {
         'directories': directories, 
         'files': files, 
         'selected_directory': selected_directory,
         'segment': 'file_manager',
-        'MEDIA_ROOT': settings.MEDIA_ROOT
     }
     return render(request, 'pages/file-manager.html', context)
 

@@ -12,7 +12,7 @@
 {% block content %}
 <div class="container-fluid py-4 px-5">
   <div class="row">
-    <div class="col-lg-3">
+    <div class="col-lg-3 border py-2">
       <ul class="">
         {% for directory in directories %}
           {% if directory.directories %}
@@ -33,7 +33,7 @@
         {% endfor %}
       </ul>
     </div>
-    <div class="col-lg-9">
+    <div class="col-lg-9 border py-2">
       {% if files %}
         <div class="d-flex justify-content-end mb-3">
           <label for="fileInput">
