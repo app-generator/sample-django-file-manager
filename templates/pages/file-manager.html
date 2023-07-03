@@ -27,7 +27,7 @@
         {% else %}
           <li>
             <i class="fa-solid fa-folder"></i>
-            <a href="?directory={{directory.path}}">{{ directory.name }}</a>
+            <a href="{% url 'file_manager' directory.path %}">{{ directory.name }}</a>
           </li>
           {% endif %}
         {% endfor %}

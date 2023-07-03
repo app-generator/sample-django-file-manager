@@ -40,10 +40,10 @@ def get_files_from_directory(directory_path):
     return files
 
 
-def file_manager(request):
+def file_manager(request, directory=''):
     media_path = os.path.join(settings.MEDIA_ROOT)
     directories = generate_nested_directory(media_path, media_path)
-    selected_directory = request.GET.get('directory', '') 
+    selected_directory = directory
 
     files = []
     selected_directory_path = os.path.join(media_path, selected_directory)
