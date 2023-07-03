@@ -20,11 +20,15 @@ def get_files_from_directory(directory_path):
     for filename in os.listdir(directory_path):
         file_path = os.path.join(directory_path, filename)
         if os.path.isfile(file_path):
-            files.append({
-                'file': file_path.split('/media/')[1],
-                'filename': filename,
-                'file_path': file_path
-            })
+            try:
+                print( ' > file_path ' + file_path)
+                files.append({
+                    'file': file_path.split(os.sep + 'media' + os.sep)[1],
+                    'filename': filename,
+                    'file_path': file_path
+                })
+            except Exception as e:
+                print( ' > ' +  str( e ) )    
     return files
 
 
