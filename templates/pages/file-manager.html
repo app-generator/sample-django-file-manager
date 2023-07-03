@@ -12,7 +12,18 @@
 {% block content %}
 <div class="container-fluid py-4 px-5">
   <div class="row">
-    <div class="col-lg-3">
+    <div class="col-lg-3 border py-2">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          {% for breadcrumb in breadcrumbs %}
+            {% if forloop.last %}
+              <li class="breadcrumb-item active" aria-current="page">{{ breadcrumb.name }}</li>
+            {% else %}
+              <li class="breadcrumb-item"><a href="{{ breadcrumb.url }}">{{ breadcrumb.name }}</a></li>
+            {% endif %}
+          {% endfor %}
+        </ol>
+      </nav>
       <ul class="">
         {% for directory in directories %}
           {% if directory.directories %}
@@ -27,13 +38,13 @@
         {% else %}
           <li>
             <i class="fa-solid fa-folder"></i>
-            <a href="?directory={{directory.path}}">{{ directory.name }}</a>
+            <a href="{% url 'file_manager' directory.path %}">{{ directory.name }}</a>
           </li>
           {% endif %}
         {% endfor %}
       </ul>
     </div>
-    <div class="col-lg-9">
+    <div class="col-lg-9 border py-2">
       {% if files %}
         <div class="d-flex justify-content-end mb-3">
           <label for="fileInput">
@@ -56,9 +67,13 @@
                 <video height="170px" data-bs-toggle="modal" data-bs-target="#file-{{forloop.counter}}" class="w-100"
                   src="/media/{{ file.file }}"></video>
               {% else %}
-                <object data="/media/{{ file.file }}" type="application/pdf" width="100%" height="170px">
+                {% if file.file|file_extension in ".csv, .txt" %}
                   <a href="/media/{{ file.file }}">{{ file.filename }}</a>
-                </object>
+                {% elif file.file|file_extension == '.pdf' %}
+                  <object class="d-block" data="/media/{{ file.file }}" type="application/pdf" width="100%" height="170px">
+                    <a href="/media/{{ file.file }}">{{ file.filename }}</a>
+                  </object>
+                {% endif %}
               {% endif %}
               <!-- Modal -->
               <div class="modal fade" id="file-{{forloop.counter}}" data-bs-backdrop="static" data-bs-keyboard="false"

@@ -17,9 +17,9 @@ def index(request):
 
 def get_files_from_directory(directory_path):
     files = []
-    for root, _, filenames in os.walk(directory_path):
-        for filename in filenames:
-            file_path = os.path.join(root, filename)
+    for filename in os.listdir(directory_path):
+        file_path = os.path.join(directory_path, filename)
+        if os.path.isfile(file_path):
             files.append({
                 'file': file_path.split('/media/')[1],
                 'filename': filename,
@@ -28,23 +28,36 @@ def get_files_from_directory(directory_path):
     return files
 
 
-def file_manager(request):
+def get_breadcrumbs(request):
+    path_components = [component for component in request.path.split('/') if component]
+    breadcrumbs = []
+    url = ''
+
+    for component in path_components:
+        url += f'/{component}'
+        breadcrumbs.append({'name': component, 'url': url})
+
+    return breadcrumbs
+
+
+def file_manager(request, directory=''):
     media_path = os.path.join(settings.MEDIA_ROOT)
     directories = generate_nested_directory(media_path, media_path)
-    selected_directory = request.GET.get('directory', '') 
+    selected_directory = directory
 
     files = []
-    if selected_directory:
-        selected_directory_path = os.path.join(media_path, selected_directory)
-        if os.path.isdir(selected_directory_path):
-            files = get_files_from_directory(selected_directory_path)
+    selected_directory_path = os.path.join(media_path, selected_directory)
+    if os.path.isdir(selected_directory_path):
+        files = get_files_from_directory(selected_directory_path)
+
+    breadcrumbs = get_breadcrumbs(request)
 
     context = {
         'directories': directories, 
         'files': files, 
         'selected_directory': selected_directory,
         'segment': 'file_manager',
-        'MEDIA_ROOT': settings.MEDIA_ROOT
+        'breadcrumbs': breadcrumbs
     }
     return render(request, 'pages/file-manager.html', context)
 

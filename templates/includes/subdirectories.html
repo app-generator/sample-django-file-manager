@@ -22,7 +22,7 @@
             class="ms-{{depth}} collapse {% if subdirectory.name in request.get_full_path %} show {% endif %} "
         >
             <i class="fa-solid fa-folder"></i>
-            <a href="?directory={{subdirectory.path}}">{{ subdirectory.name }}</a>
+            <a href="{% url 'file_manager' subdirectory.path %}">{{ subdirectory.name }}</a>
         </li>
     {% endif %}
 {% endfor %}
