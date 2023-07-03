@@ -14,5 +14,3 @@ env
 
 .env
 yarn.lock
-
-/media
