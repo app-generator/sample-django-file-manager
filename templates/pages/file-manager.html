@@ -38,8 +38,13 @@
           {% if directory.directories %}
           <li class="">
             <i class="fa-solid fa-folder"></i>
-            <a data-bs-toggle="collapse" href="#collapse{{directory.name}}" role="button" aria-expanded="false"
-              aria-controls="collapse{{directory.name}}">
+            <a 
+              data-bs-toggle="collapse" 
+              href="#collapse{{directory.id}}" 
+              role="button" 
+              aria-expanded="false"
+              aria-controls="collapse{{directory.id}}"
+            >
               {{ directory.name }}
             </a>
           </li>
