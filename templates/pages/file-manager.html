@@ -44,6 +44,7 @@
               role="button" 
               aria-expanded="false"
               aria-controls="collapse{{directory.id}}"
+              onclick="window.location.href = '{% url 'file_manager' directory.path|urlencode %}';"
             >
               {{ directory.name }}
             </a>
@@ -52,7 +53,7 @@
         {% else %}
           <li>
             <i class="fa-solid fa-folder"></i>
-            <a href="{% url 'file_manager' directory.path %}">{{ directory.name }}</a>
+            <a href="{% url 'file_manager' directory.path|urlencode %}">{{ directory.name }}</a>
           </li>
           {% endif %}
         {% endfor %}
