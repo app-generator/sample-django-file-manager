@@ -41,7 +41,7 @@ def get_breadcrumbs(request):
     for component in path_components:
         url += f'{os.sep}{component}'
         if component == "file-manager":
-            component = "root"
+            component = "media"
         breadcrumbs.append({'name': component, 'url': url})
 
     return breadcrumbs
