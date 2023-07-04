@@ -1,5 +1,0 @@
-Database ID,Application ID,Criticality,Application(Mapped,Database)Mapped,In'Scope of Portfolio,F1,F2
-D1,A1-CRM,High,Mapped,Unmapped,true,1,2
-D10,A8-Mon,High,Mapped,Mapped,true,1,2
-D11,A11-Web,Low,Mapped,Mapped,true,1,2
-D12,A12-Retail,High,Mapped,Mapped,true,1,2
