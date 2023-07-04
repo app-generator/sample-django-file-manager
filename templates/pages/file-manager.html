@@ -28,7 +28,11 @@
             {% if forloop.last %}
               <li class="breadcrumb-item active" aria-current="page">{{ breadcrumb.name }}</li>
             {% else %}
-              <li class="breadcrumb-item"><a href="{{ breadcrumb.url }}">{{ breadcrumb.name }}</a></li>
+              {% if breadcrumb.name|lower == 'media' %}
+                <li class="breadcrumb-item active" aria-current="page">{{ breadcrumb.name }}</li>
+              {% else %}
+                <li class="breadcrumb-item"><a href="{{ breadcrumb.url }}">{{ breadcrumb.name }}</a></li>
+              {% endif %}
             {% endif %}
           {% endfor %}
         </ol>
@@ -60,7 +64,7 @@
       </ul>
     </div>
     <div class="col-lg-9 border py-2">
-      <div class="d-flex justify-content-end mb-3">
+      <div class="d-flex justify-content-start mb-3">
         <label for="fileInput">
           <i class="fa-solid fa-upload text-primary fs-3"></i>
         </label>
@@ -84,21 +88,9 @@
               <td>{{ file.filename|file_extension|cut:"."|upper }}</td>
               <td>
                 <div class="d-flex align-items-center actions">
-                  {% if file.file|file_extension in ".csv, .txt" %}
-                    <a href="/media/{{ file.file }}">
-                      <i title="View" class="fa-solid fa-eye text-primary"></i>
-                    </a>
-                  {% elif file.file|file_extension == '.pdf' %}
-                    <object data="/media/{{ file.file }}" type="application/pdf">
-                      <a href="/media/{{ file.file }}">
-                        <i title="View" class="fa-solid fa-eye text-primary"></i>
-                      </a>
-                    </object>
-                  {% else %}
-                    <span data-bs-toggle="modal" data-bs-target="#file-{{forloop.counter}}">
-                      <i title="View" class="fa-solid fa-eye text-primary"></i>
-                    </span>
-                  {% endif %}
+                  <span data-bs-toggle="modal" data-bs-target="#file-{{forloop.counter}}">
+                    <i title="View" class="fa-solid fa-eye text-primary"></i>
+                  </span>
                   <div class="dot-separator mx-2"></div>
                   <span>
                     <a href="{% url 'download_file' file.file|encoded_file_path %}">
@@ -115,7 +107,7 @@
             <!-- Modal -->
             <div class="modal fade" id="file-{{forloop.counter}}" data-bs-backdrop="static" data-bs-keyboard="false"
               tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered modal-lg">
+              <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ file.filename }}</h1>
@@ -125,11 +117,13 @@
                   </div>
                   <div class="modal-body">
                     {% if file.filename|file_extension in ".jpg, .png, .gif" %}
-                      <img class="w-100" src="/media/{{ file.file }}" alt="df">
+                      <img height="700px" class="w-100" src="/media/{{ file.file }}" alt="df">
                     {% elif file.filename|file_extension in ".mp4, .webm, .ogg" %}
-                      <video class="w-100" height="240" controls>
+                      <video class="w-100" height="700" controls>
                         <source src="/media/{{ file.file }}" type="video/mp4">
                       </video>
+                    {% elif file.filename|file_extension in ".pdf, .txt" %}
+                      <iframe src="/media/{{ file.file }}" width="100%" height="700px"></iframe>
                     {% endif %}
                   </div>
                 </div>
