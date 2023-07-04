@@ -6,6 +6,15 @@
   ul li {
     list-style-type: none;
   }
+  .dot-separator {
+    height: 2px;
+    width: 2px;
+    background: #000;
+    border-radius: 50%;
+  }
+  .actions span {
+    cursor: pointer;
+  }
 </style>
 {% endblock extrastyle %}
 
@@ -46,70 +55,95 @@
     </div>
     <div class="col-lg-9 border py-2">
       {% if files %}
-        <div class="d-flex justify-content-end mb-3">
-          <label for="fileInput">
-            <i class="fa-solid fa-upload text-primary fs-3"></i>
-          </label>
-          <form method="post" action="{% url 'upload_file' %}" id="upload-file" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input type="hidden" name="directory" value="{{ selected_directory }}">
-            <input id="fileInput" class="d-none" onchange="submitForm()" type="file" name="file" required>
-          </form>
-        </div>
-        <ul>
-          <div class="row">
+        <div class="table-responsive">
+          <table class="table">
+            <tr>
+              <th scope="col">File Name</th>
+              <th scope="col">File Type</th>
+              <th scope="col">Actions</th>
+            </tr>
             {% for file in files %}
-            <div class="col-lg-3 mb-3 rounded p-1 shadow-sm">
-              {% if file.filename|file_extension in ".jpg, .png, .gif" %}
-                <img height="170px" data-bs-toggle="modal" data-bs-target="#file-{{forloop.counter}}" class="w-100"
-                  src="/media/{{ file.file }}" alt="df">
-              {% elif file.filename|file_extension in ".mp4, .webm, .ogg" %}
-                <video height="170px" data-bs-toggle="modal" data-bs-target="#file-{{forloop.counter}}" class="w-100"
-                  src="/media/{{ file.file }}"></video>
-              {% else %}
-                {% if file.file|file_extension in ".csv, .txt" %}
-                  <a href="/media/{{ file.file }}">{{ file.filename }}</a>
-                {% elif file.file|file_extension == '.pdf' %}
-                  <object class="d-block" data="/media/{{ file.file }}" type="application/pdf" width="100%" height="170px">
-                    <a href="/media/{{ file.file }}">{{ file.filename }}</a>
-                  </object>
-                {% endif %}
-              {% endif %}
-              <!-- Modal -->
-              <div class="modal fade" id="file-{{forloop.counter}}" data-bs-backdrop="static" data-bs-keyboard="false"
-                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ file.filename }}</h1>
-                      <div class="" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="fa-solid fa-circle-xmark fs-5"></i>
-                      </div>
+            <tr>
+              <td>{{ file.filename }}</td>
+              <td>{{ file.filename|file_extension|cut:"."|upper }}</td>
+              <td>
+                <div class="d-flex align-items-center actions">
+                  {% if file.file|file_extension in ".csv, .txt" %}
+                    <a href="/media/{{ file.file }}">
+                      <i class="fa-solid fa-eye text-primary"></i>
+                    </a>
+                  {% elif file.file|file_extension == '.pdf' %}
+                    <object data="/media/{{ file.file }}" type="application/pdf">
+                      <a href="/media/{{ file.file }}">
+                        <i class="fa-solid fa-eye text-primary"></i>
+                      </a>
+                    </object>
+                  {% else %}
+                    <span data-bs-toggle="modal" data-bs-target="#file-{{forloop.counter}}">
+                      <i class="fa-solid fa-eye text-primary"></i>
+                    </span>
+                  {% endif %}
+                  <div class="dot-separator mx-2"></div>
+                  <span>
+                    <a href="{% url 'download_file' file.file|encoded_file_path %}">
+                      <i class="fa-solid fa-download text-success"></i>
+                    </a>
+                  </span>
+                  <div class="dot-separator mx-2"></div>
+                  <span data-bs-toggle="modal" data-bs-target="#delete-{{forloop.counter}}">
+                    <i class="fa-solid fa-trash text-danger"></i>
+                  </span>
+                </div>
+              </td>
+            </tr>
+            <!-- Modal -->
+            <div class="modal fade" id="file-{{forloop.counter}}" data-bs-backdrop="static" data-bs-keyboard="false"
+              tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ file.filename }}</h1>
+                    <div class="" data-bs-dismiss="modal" aria-label="Close">
+                      <i class="fa-solid fa-circle-xmark fs-5"></i>
                     </div>
-                    <div class="modal-body">
-                      {% if file.filename|file_extension in ".jpg, .png, .gif" %}
-                        <img class="w-100" src="/media/{{ file.file }}" alt="df">
-                      {% elif file.filename|file_extension in ".mp4, .webm, .ogg" %}
-                        <video class="w-100" height="240" controls>
-                          <source src="/media/{{ file.file }}" type="video/mp4">
-                        </video>
-                      {% endif %}
-                    </div>
+                  </div>
+                  <div class="modal-body">
+                    {% if file.filename|file_extension in ".jpg, .png, .gif" %}
+                      <img class="w-100" src="/media/{{ file.file }}" alt="df">
+                    {% elif file.filename|file_extension in ".mp4, .webm, .ogg" %}
+                      <video class="w-100" height="240" controls>
+                        <source src="/media/{{ file.file }}" type="video/mp4">
+                      </video>
+                    {% endif %}
                   </div>
                 </div>
               </div>
-              <hr />
-              <div class="">
-                <a href="{% url 'delete_file' file.file|encoded_file_path %}"><i class="fa-solid fa-trash text-danger"></i></a>
-                <span>.</span>
-                <a href="{% url 'download_file' file.file|encoded_file_path %}"><i class="fa-solid fa-download text-success"></i></a>
+            </div>
+            <!-- Delete Modal -->
+            <div class="modal fade" id="delete-{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete File</h1>
+                    <div class="" data-bs-dismiss="modal" aria-label="Close">
+                      <i class="fa-solid fa-circle-xmark fs-5"></i>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                    {{file.filename}}
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <a class="btn btn-danger" href="{% url 'delete_file' file.file|encoded_file_path %}">Delete</a>
+                  </div>
+                </div>
               </div>
             </div>
             {% endfor %}
-          </div>
-        </ul>
+          </table>
+        </div>
       {% else %}
-        <p>Select a directory</p>
+        <p>No files</p>
       {% endif %}
     </div>
   </div>
