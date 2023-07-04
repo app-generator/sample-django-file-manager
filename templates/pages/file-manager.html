@@ -75,28 +75,28 @@
                 <div class="d-flex align-items-center actions">
                   {% if file.file|file_extension in ".csv, .txt" %}
                     <a href="/media/{{ file.file }}">
-                      <i class="fa-solid fa-eye text-primary"></i>
+                      <i title="View" class="fa-solid fa-eye text-primary"></i>
                     </a>
                   {% elif file.file|file_extension == '.pdf' %}
                     <object data="/media/{{ file.file }}" type="application/pdf">
                       <a href="/media/{{ file.file }}">
-                        <i class="fa-solid fa-eye text-primary"></i>
+                        <i title="View" class="fa-solid fa-eye text-primary"></i>
                       </a>
                     </object>
                   {% else %}
                     <span data-bs-toggle="modal" data-bs-target="#file-{{forloop.counter}}">
-                      <i class="fa-solid fa-eye text-primary"></i>
+                      <i title="View" class="fa-solid fa-eye text-primary"></i>
                     </span>
                   {% endif %}
                   <div class="dot-separator mx-2"></div>
                   <span>
                     <a href="{% url 'download_file' file.file|encoded_file_path %}">
-                      <i class="fa-solid fa-download text-success"></i>
+                      <i title="Download" class="fa-solid fa-download text-success"></i>
                     </a>
                   </span>
                   <div class="dot-separator mx-2"></div>
                   <span data-bs-toggle="modal" data-bs-target="#delete-{{forloop.counter}}">
-                    <i class="fa-solid fa-trash text-danger"></i>
+                    <i title="Delete" class="fa-solid fa-trash text-danger"></i>
                   </span>
                 </div>
               </td>
