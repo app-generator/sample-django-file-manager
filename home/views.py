@@ -1,4 +1,5 @@
 import os
+import uuid
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, FileResponse, Http404
 from django.conf import settings
@@ -33,12 +34,14 @@ def get_files_from_directory(directory_path):
 
 
 def get_breadcrumbs(request):
-    path_components = [component for component in request.path.split('/') if component]
+    path_components = [component for component in request.path.split(os.sep) if component]
     breadcrumbs = []
     url = ''
 
     for component in path_components:
-        url += f'/{component}'
+        url += f'{os.sep}{component}'
+        if component == "file-manager":
+            component = "root"
         breadcrumbs.append({'name': component, 'url': url})
 
     return breadcrumbs
@@ -70,9 +73,10 @@ def generate_nested_directory(root_path, current_path):
     directories = []
     for name in os.listdir(current_path):
         if os.path.isdir(os.path.join(current_path, name)):
+            unique_id = str(uuid.uuid4())
             nested_path = os.path.join(current_path, name)
             nested_directories = generate_nested_directory(root_path, nested_path)
-            directories.append({'name': name, 'path': os.path.relpath(nested_path, root_path), 'directories': nested_directories})
+            directories.append({'id': unique_id, 'name': name, 'path': os.path.relpath(nested_path, root_path), 'directories': nested_directories})
     return directories
 
 
