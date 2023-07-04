@@ -2,7 +2,7 @@
     {% if subdirectory.directories %}
         <li 
             id="collapse{{directory.id}}" 
-            class="ms-{{depth}} collapse show {% if subdirectory.name in request.get_full_path %}  {% endif %}"
+            class="ms-{{depth}} collapse show"
         >
             <i class="fa-solid fa-folder"></i>
             <a 
@@ -19,7 +19,7 @@
     {% else %}
         <li 
             id="collapse{{directory.id}}" 
-            class="ms-{{depth}} collapse show {% if subdirectory.name in request.get_full_path %} {% endif %} "
+            class="ms-{{depth}} collapse show"
         >
             <i class="fa-solid fa-folder"></i>
             <a href="{% url 'file_manager' subdirectory.path %}">{{ subdirectory.name }}</a>
