@@ -59,6 +59,16 @@
       </ul>
     </div>
     <div class="col-lg-9 border py-2">
+      <div class="d-flex justify-content-end mb-3">
+        <label for="fileInput">
+          <i class="fa-solid fa-upload text-primary fs-3"></i>
+        </label>
+        <form method="post" action="{% url 'upload_file' %}" id="upload-file" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input type="hidden" name="directory" value="{{ selected_directory }}">
+          <input id="fileInput" class="d-none" onchange="submitForm()" type="file" name="file" required>
+        </form>
+      </div>
       {% if files %}
         <div class="table-responsive">
           <table class="table">
