@@ -1,5 +1,6 @@
 import os
 import uuid
+import csv
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, FileResponse, Http404
 from django.conf import settings
@@ -16,6 +17,17 @@ def index(request):
     # Page from the theme 
     return render(request, 'pages/dashboard.html', context=context)
 
+def convert_csv_to_text(csv_file_path):
+    with open(csv_file_path, 'r') as file:
+        reader = csv.reader(file)
+        rows = list(reader)
+
+    text = ''
+    for row in rows:
+        text += ','.join(row) + '\n'
+
+    return text
+
 def get_files_from_directory(directory_path):
     files = []
     for filename in os.listdir(directory_path):
@@ -23,15 +35,21 @@ def get_files_from_directory(directory_path):
         if os.path.isfile(file_path):
             try:
                 print( ' > file_path ' + file_path)
+                _, extension = os.path.splitext(filename)
+                if extension.lower() == '.csv':
+                    csv_text = convert_csv_to_text(file_path)
+                else:
+                    csv_text = ''
+
                 files.append({
                     'file': file_path.split(os.sep + 'media' + os.sep)[1],
                     'filename': filename,
-                    'file_path': file_path
+                    'file_path': file_path,
+                    'csv_text': csv_text
                 })
             except Exception as e:
                 print( ' > ' +  str( e ) )    
     return files
-
 
 def get_breadcrumbs(request):
     path_components = [component for component in request.path.split("/") if component]
