@@ -15,6 +15,9 @@
   .actions span {
     cursor: pointer;
   }
+  .modal {
+    z-index: 99999 !important;
+  }
 </style>
 {% endblock extrastyle %}
 
@@ -124,6 +127,8 @@
                       </video>
                     {% elif file.filename|file_extension in ".pdf, .txt" %}
                       <iframe src="/media/{{ file.file }}" width="100%" height="700px"></iframe>
+                    {% elif file.filename|file_extension in ".csv" %}
+                      <pre class="bg-dark text-light p-3">{{ file.csv_text }}</pre>
                     {% endif %}
                   </div>
                 </div>
