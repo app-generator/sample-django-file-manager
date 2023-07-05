@@ -1,5 +1,12 @@
 # Change Log
 
+## [1.0.1] 2023-07-05
+### Changes
+
+- Update DOCS (readme)
+- Added `YouTube Presentation`
+  - [Django File Manager](https://www.youtube.com/watch?v=dBWGf-ZNUDI)
+
 ## [1.0.0] 2023-07-05
 ### Changes
 
