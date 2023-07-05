@@ -1,5 +1,10 @@
 # Change Log
 
+## [1.0.0] 2023-07-05
+### Changes
+
+- STABLE Version 
+
 ## [0.0.1] 2023-06-22
 ### Changes
 
