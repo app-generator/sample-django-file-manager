@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: django-corporate
+    name: django-file-manager
     plan: starter
     env: python
     region: frankfurt  # region should be same as your database region.
