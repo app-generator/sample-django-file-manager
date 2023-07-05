@@ -2,75 +2,22 @@
 
 Open-source **Django** project crafted on top of **[Corporate Dashboard](https://appseed.us/product/corporate-dashboard/django/)**, an open-source `Bootstrap 5` design from [Creative-Tim](https://www.creative-tim.com/product/corporate-ui-dashboard?AFFILIATE=128200).
 Designed for those who like bold elements and beautiful websites. Made of hundred of elements, designed blocks and fully coded pages, `Corporate Dashboard` is ready to help you create stunning websites and webapps.
-
-> **STATUS**: `Work in Progress`
  
 <br />
 
-## File Manager
+> Features: 
 
-The codebase needs to be enhanced to manage all files saved in the media directory. For instance, the following structure might exist:
-
-> **Disk Storage** (Files Exlorer)
-
-```bash
-<ROOT>
-  |-- media
-       |-- project1
-       |    |-- photo.jpg
-       |    |-- cv.pdf
-       |    |-- dir1/
-       |         |-- readme.txt
-       |
-       |-- project2
-            |-- my-data.png
-            |-- reports.xls
-```
-
-The route that handles the files needs to be like this:
-
-- `/file-manager/` - the root of the `MEDIA` directory is managed
-- `/file-manager/project1/` only the files and subdirectories of `project1` are managed 
-
-> **UI** (Files Exlorer)
-
-The UI will provide a `left`, `right` view, using a pattern similar to Windows File Explorer: 
-
-- **left panel** shows directories
-  - the user can collapse the tree structure  
-- **right panel**
-  - shows the current files of the selected directory (on the right panel)
-  - ACTIONS:
-    - delete
-    - view (modal popup) for formats: PNG, JPG, PDF, CSV
-    - download
-    - upload   
- 
-<br />
-
-![Django Corporate Dashboard](https://user-images.githubusercontent.com/51070104/229719846-cfe96c5c-89c2-4ea0-89a9-7be69ebbb228.png)
+- ✅ Simple `File Manager` over the MEDIA folder
+  - Supports any Depth TREE
+  - Options: delete, preview, download, upload
+- ✅ `Up-to-date Dependencies`
+- ✅ Theme: [Django Admin Corporate](https://github.com/app-generator/django-admin-corporate), designed by [Creative-Tim](https://www.creative-tim.com/product/corporate-ui-dashboard?AFFILIATE=128200)
+  - `can be used in any Django project` (new or legacy)
+- ✅ **Authentication**: `Django.contrib.AUTH`, Registration
 
 <br /> 
 
-## Start with `Docker`
 
-> 👉 **Step 1** - Download the code from the GH repository (using `GIT`) 
-
-```bash
-$ git clone https://github.com/app-generator/sample-django-file-manager.git
-$ cd sample-django-file-manager
-```
-
-<br />
-
-> 👉 **Step 2** - Start the APP in `Docker`
-
-```bash
-$ chmod +x entrypoint.sh
-$ docker-compose up --build 
-```
-
-Visit `http://localhost:5085` in your browser. The app should be up & running.
 
 <br />
 
