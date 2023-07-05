@@ -1,3 +1,5 @@
+{% load static file_extension %}
+
 {% for subdirectory in directory.directories %}
     {% if subdirectory.directories %}
         <li 
@@ -11,7 +13,7 @@
                 role="button" 
                 aria-expanded="false" 
                 aria-controls="collapse{{subdirectory.id}}"
-                onclick="window.location.href = '{% url 'file_manager' subdirectory.path|urlencode %}';"
+                onclick="window.location.href = '{% url 'file_manager' subdirectory.path|encoded_path %}';"
             >
                 {{ subdirectory.name }}
             </a>
@@ -23,7 +25,7 @@
             class="ms-{{depth}} collapse show"
         >
             <i class="fa-solid fa-folder"></i>
-            <a href="{% url 'file_manager' subdirectory.path|urlencode %}">{{ subdirectory.name }}</a>
+            <a href="{% url 'file_manager' subdirectory.path|encoded_path %}">{{ subdirectory.name }}</a>
         </li>
     {% endif %}
 {% endfor %}
