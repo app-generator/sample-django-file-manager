@@ -1,4 +1,4 @@
-# [Django File Manager ](https://github.com/app-generator/sample-django-file-manager/)
+# [Django File Manager](https://github.com/app-generator/sample-django-file-manager/)
 
 Open-source **Django** project crafted on top of **[Corporate Dashboard](https://appseed.us/product/corporate-dashboard/django/)**, an open-source `Bootstrap 5` design from [Creative-Tim](https://www.creative-tim.com/product/corporate-ui-dashboard?AFFILIATE=128200).
 Designed for those who like bold elements and beautiful websites. Made of hundred of elements, designed blocks and fully coded pages, `Corporate Dashboard` is ready to help you create stunning websites and webapps.
@@ -17,7 +17,7 @@ Designed for those who like bold elements and beautiful websites. Made of hundre
 
 <br /> 
 
-
+![Django File Manager - Open-Source Sample crafted by AppSeed.](https://github.com/app-generator/sample-django-file-manager/assets/51070104/0d40c31f-d109-4ed8-b4f5-6a9be585e5e6)
 
 <br />
 
