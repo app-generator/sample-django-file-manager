@@ -34,12 +34,12 @@ def get_files_from_directory(directory_path):
 
 
 def get_breadcrumbs(request):
-    path_components = [component for component in request.path.split(os.sep) if component]
+    path_components = [component for component in request.path.split("/") if component]
     breadcrumbs = []
     url = ''
 
     for component in path_components:
-        url += f'{os.sep}{component}'
+        url += f'/{component}'
         if component == "file-manager":
             component = "media"
         breadcrumbs.append({'name': component, 'url': url})

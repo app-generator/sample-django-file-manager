@@ -48,7 +48,7 @@
               role="button" 
               aria-expanded="false"
               aria-controls="collapse{{directory.id}}"
-              onclick="window.location.href = '{% url 'file_manager' directory.path|urlencode %}';"
+              onclick="window.location.href = '{% url 'file_manager' directory.path|encoded_path %}';"
             >
               {{ directory.name }}
             </a>
@@ -57,7 +57,7 @@
         {% else %}
           <li>
             <i class="fa-solid fa-folder"></i>
-            <a href="{% url 'file_manager' directory.path|urlencode %}">{{ directory.name }}</a>
+            <a href="{% url 'file_manager' directory.path|encoded_path %}">{{ directory.name }}</a>
           </li>
           {% endif %}
         {% endfor %}
@@ -75,6 +75,7 @@
         </form>
       </div>
       {% if files %}
+        {{files|length|json_script:"files-count"}}
         <div class="table-responsive">
           <table class="table">
             <tr>
@@ -92,12 +93,6 @@
                     <i title="View" class="fa-solid fa-eye text-primary"></i>
                   </span>
                   <div class="dot-separator mx-2"></div>
-                  <span>
-                    <a href="{% url 'download_file' file.file|encoded_file_path %}">
-                      <i title="Download" class="fa-solid fa-download text-success"></i>
-                    </a>
-                  </span>
-                  <div class="dot-separator mx-2"></div>
                   <span data-bs-toggle="modal" data-bs-target="#delete-{{forloop.counter}}">
                     <i title="Delete" class="fa-solid fa-trash text-danger"></i>
                   </span>
@@ -111,7 +106,12 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ file.filename }}</h1>
-                    <div class="" data-bs-dismiss="modal" aria-label="Close">
+                    <span>
+                      <a href="{% url 'download_file' file.file|encoded_file_path %}">
+                        <i title="Download" class="fa-solid fa-download text-success fs-4"></i>
+                      </a>
+                    </span>
+                    <div class="" id="modal-close-btn-{{forloop.counter}}" data-bs-dismiss="modal" aria-label="Close">
                       <i class="fa-solid fa-circle-xmark fs-5"></i>
                     </div>
                   </div>
@@ -164,6 +164,16 @@
   function submitForm() {
     document.getElementById("upload-file").submit();
   }
+  
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' || event.key === 'Esc' || event.key === 27) {
+      let files = document.getElementById('files-count').textContent;
+      for (let i = 1; i <= files; i++) {
+        let closeButtonElements = document.getElementById(`modal-close-btn-${i}`);
+        closeButtonElements.click();
+      }
+    }
+  })
 </script>
 
 {% endblock extrascripts %}

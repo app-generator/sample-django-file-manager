@@ -12,4 +12,8 @@ def file_extension(value):
 
 @register.filter
 def encoded_file_path(path):
-    return path.replace(os.sep, '%slash%')
+    return path.replace('/', '%slash%')
+
+@register.filter
+def encoded_path(path):
+    return path.replace('\\', '/')
