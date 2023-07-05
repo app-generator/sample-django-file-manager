@@ -7,9 +7,9 @@ Designed for those who like bold elements and beautiful websites. Made of hundre
   
 <br />
 
-> Features: 
+### Features
 
-- ✅ Simple `File Manager` over the MEDIA folder
+- ✅ Simple **File Manager** over the `MEDIA` folder
   - Supports any Depth TREE
   - Options: delete, preview, download, upload
 - ✅ `Up-to-date Dependencies`
