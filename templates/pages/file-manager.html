@@ -87,9 +87,9 @@
               <th scope="col">Actions</th>
             </tr>
             {% for file in files %}
-            <tr>
+            <tr data-bs-toggle="tooltip" title="{{file.file_path|info_value}}">
               <td>
-                <span data-bs-toggle="tooltip" title="{{file.file_path|info_value}}">
+                <span>
                   {{ file.filename }}
                 </span>
               </td>
