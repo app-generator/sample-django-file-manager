@@ -1,5 +1,5 @@
 {% extends 'layouts/base.html' %}
-{% load static file_extension %}
+{% load static file_extension info_value %}
 
 {% block extrastyle %}
 <style>
@@ -88,10 +88,18 @@
             </tr>
             {% for file in files %}
             <tr>
-              <td>{{ file.filename }}</td>
+              <td>
+                <span data-bs-toggle="tooltip" title="{{file.file_path|info_value}}">
+                  {{ file.filename }}
+                </span>
+              </td>
               <td>{{ file.filename|file_extension|cut:"."|upper }}</td>
               <td>
                 <div class="d-flex align-items-center actions">
+                  <span data-bs-toggle="modal" data-bs-target="#info-{{forloop.counter}}">
+                    <i title="Info" class="fa-solid fa-info text-success"></i>
+                  </span>
+                  <div class="dot-separator mx-2"></div>
                   <span data-bs-toggle="modal" data-bs-target="#file-{{forloop.counter}}">
                     <i title="View" class="fa-solid fa-eye text-primary"></i>
                   </span>
@@ -147,6 +155,31 @@
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <a class="btn btn-danger" href="{% url 'delete_file' file.file|encoded_file_path %}">Delete</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Info Modal -->
+            <div class="modal fade" id="info-{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">File Info</h1>
+                    <div class="" id="modal-close-btn-{{forloop.counter}}" data-bs-dismiss="modal" aria-label="Close">
+                      <i class="fa-solid fa-circle-xmark fs-5"></i>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                    <form action="{% url 'save_info' file.file_path|encoded_file_path %}" method="post">
+                      {% csrf_token %}
+                      <div class="form-group mb-2">
+                        <label for="" class="form-label">File Info</label>
+                        <input type="text" value="{{file.file_path|info_value}}" name="info" id="" class="form-control">
+                      </div>
+                      <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>

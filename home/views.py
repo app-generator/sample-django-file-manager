@@ -4,6 +4,7 @@ import csv
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, FileResponse, Http404
 from django.conf import settings
+from home.models import FileInfo
 
 # Create your views here.
 
@@ -50,6 +51,18 @@ def get_files_from_directory(directory_path):
             except Exception as e:
                 print( ' > ' +  str( e ) )    
     return files
+
+def save_info(request, file_path):
+    path = file_path.replace('%slash%', '/')
+    if request.method == 'POST':
+        FileInfo.objects.update_or_create(
+            path=path,
+            defaults={
+                'info': request.POST.get('info')
+            }
+        )
+    
+    return redirect(request.META.get('HTTP_REFERER'))
 
 def get_breadcrumbs(request):
     path_components = [component for component in request.path.split("/") if component]
