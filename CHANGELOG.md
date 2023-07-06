@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.0.2] 2023-07-06
+### Changes
+
+- Associate INFO with files 
+  - show a popup on Files Tables, on `mouseover`
+
 ## [1.0.1] 2023-07-05
 ### Changes
 
