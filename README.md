@@ -29,6 +29,8 @@ Designed for those who like bold elements and beautiful websites. Made of hundre
 | ------------------------------------  | ------------------------------------                                                    | ------------------------------------|
 | ✓ [VIDEO](https://www.youtube.com/watch?v=dBWGf-ZNUDI)  | 🚀 [LIVE Demo](https://django-datta-pro.onrender.com/) | 🛒 `Order`: **[$3,999](https://appseed.gumroad.com/l/rocket-package)** (GUMROAD) |   
 
+<br />
+
 ![Django File Manager - Open-Source Sample crafted by AppSeed.](https://github.com/app-generator/sample-django-file-manager/assets/51070104/0d40c31f-d109-4ed8-b4f5-6a9be585e5e6)
 
 <br />
