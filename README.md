@@ -25,7 +25,6 @@ Designed for those who like bold elements and beautiful websites. Made of hundre
 | -                                     | ✅ `Private REPO Access`                                                               |  -                                   |
 | -                                     | ✅ **PRO Support** - [Email & Discord](https://appseed.us/support/)                    |  -                                   |
 | -                                     | ✅ Deployment Assistance                                                               |  -                                   |
-| -                                     | -                                                                                       |  -                                   |
 | ------------------------------------  | ------------------------------------                                                    | ------------------------------------|
 | ✓ [VIDEO](https://www.youtube.com/watch?v=dBWGf-ZNUDI)  | 🚀 [LIVE Demo](https://django-datta-pro.onrender.com/) | 🛒 `Order`: **[$3,999](https://appseed.gumroad.com/l/rocket-package)** (GUMROAD) |   
 
